@@ -39,7 +39,7 @@ def save_model(model, optimizer, epoch, accuracy, ddp, log_wandb=False):
             "train_accuracy": accuracy["train"],
             "val_accuracy": accuracy["val"],
         },
-        f"model_{model_suffix}.pt",
+        f"models/model_{model_suffix}.pt",
     )
 
     if log_wandb:
