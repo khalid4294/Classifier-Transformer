@@ -1,6 +1,7 @@
 """ Train a transformer model on a classification task. """
 import os
 import json
+import yaml
 import wandb
 import torch
 import logging
@@ -22,9 +23,10 @@ with open("creds/creds.json", "r") as f:
 user = creds["pushover"]["user"]
 token = creds["pushover"]["token"]
 
-# load config from config.json
-with open("config.json", "r") as f:
-    config = json.load(f)
+# load config from config.yml file
+with open("config.yml", "r") as f:
+    config = yaml.load(f, Loader=yaml.FullLoader)
+
 
 # model parameters
 pretrained = config["pretrained"]
@@ -48,13 +50,8 @@ max_iters = config["max_iters"]
 max_interval = config["max_interval"]
 eval_iters = config["eval_iters"]
 learning_rate = config["learning_rate"]
-device = (
-    "mps"
-    if torch.backends.mps.is_available()
-    else "cuda"
-    if torch.cuda.is_available()
-    else "cpu"
-)
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # toggles for training and logging
 log_wandb = config["log_wandb"]

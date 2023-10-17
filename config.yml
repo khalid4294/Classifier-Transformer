@@ -1,0 +1,24 @@
+# model parameters
+pretrained: True
+model_name: 
+n_layer: 
+dropout: 
+n_head:
+head_size:
+dropout:
+
+# data parameters
+block_size:
+batch_size:
+vocab_size:
+output_size:
+
+# training parameters
+max_iters:
+max_interval:
+eval_iters:
+learning_rate:
+
+# toggles for training and logging
+log_wandb:
+log_pushover:
